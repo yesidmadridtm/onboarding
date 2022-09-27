@@ -3,6 +3,11 @@ package runners;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-@CucumberOptions(features="src/test/resources/features", glue="stepsDefinitions", plugin= {"html:target/cucumber.html"}, monochrome = true)
+import static io.cucumber.testng.CucumberOptions.SnippetType.CAMELCASE;
+
+@CucumberOptions(
+        features="src/test/resources/features",
+        glue= "stepsdefinitions",
+        snippets = CAMELCASE)
 public class TestRunner extends AbstractTestNGCucumberTests {
 }

@@ -42,11 +42,11 @@ public class test {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         // consumo de clase Login
-        LoginApp login = new LoginApp(driver);
-        login.goToLogin();
-        login.login("Admin", "admin123");
+        //LoginApp login = new LoginApp(driver);
+        //login.goToLogin();
+        //login.login("Admin", "admin123");
 
-        login.close();
+        //login.close();
 
 
 
