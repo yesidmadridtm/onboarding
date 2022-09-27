@@ -9,5 +9,6 @@ import static io.cucumber.testng.CucumberOptions.SnippetType.CAMELCASE;
         features="src/test/resources/features",
         glue= "stepsdefinitions",
         snippets = CAMELCASE)
+
 public class TestRunner extends AbstractTestNGCucumberTests {
 }
