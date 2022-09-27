@@ -1,12 +1,9 @@
 package test;
 
 import base.BaseTest;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.PIMPage;
-
-import java.util.List;
 
 public class PimFilterIdTest extends BaseTest {
 

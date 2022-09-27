@@ -4,10 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.LoginApp;
-import pageobjects.PIMPage;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 
 public class test {
@@ -47,11 +45,6 @@ public class test {
         LoginApp login = new LoginApp(driver);
         login.goToLogin();
         login.login("Admin", "admin123");
-
-        PIMPage pim = new PIMPage(driver);
-        pim.search("0011");
-        System.out.println(pim.getRecord("0011"));
-
 
         login.close();
 
