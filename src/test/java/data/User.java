@@ -1,16 +1,20 @@
 package data;
 
 public class User {
-    public static String username;
-    public static String password;
+    private final String username;
+    private final String password;
 
-    public User(){
-        username = "Admin";
-        password = "admin123";
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public User(String user, String pass){
-        username = user;
-        password = pass;
+    public String getUsername() {
+        return username;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
 }

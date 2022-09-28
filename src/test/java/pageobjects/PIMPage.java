@@ -38,7 +38,7 @@ public class PIMPage extends BasePage {
         submit_search.click();
     }
 
-    public void searchByEmpStatus(String value) throws InterruptedException {
+    public void searchByEmpStatus() {
         employment_status.click();
         options.get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[3]/div/div[2]/div/div[2]/div[4]")).click();
         submit_search.click();
@@ -50,6 +50,7 @@ public class PIMPage extends BasePage {
     }
 
     public boolean getRecord(String id){
+        System.out.println(getRecords().get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[2]/div")).getText());
         return getRecords().get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[2]/div")).getText().equals(id);
     }
 

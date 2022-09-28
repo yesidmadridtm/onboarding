@@ -1,4 +1,9 @@
-Feature: Filter employees by Employment Status
+Feature: See records of employees in PIM page
+
+  Scenario: Positive Test of filtering the employees by ID
+    Given Client see the records of employees, He want filter these records by Id
+    When He search an Id
+    Then data has been filtered with this Id
 
   Scenario: Positive Test of filtering the employees by Employment Status
     Given Client see the records of employees, He want filter these records by Employment Status
