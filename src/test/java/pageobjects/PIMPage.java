@@ -25,8 +25,26 @@ public class PIMPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[3]/div/div[2]/div/div")
     WebElement employment_status;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[4]/div/div[2]/div/div")
+    WebElement include;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[6]/div/div[2]/div/div")
+    WebElement jobTitle;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[7]/div/div[2]/div/div")
+    WebElement subUnit;
+
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[3]/div/div[2]/div/div[2]")
-    List<WebElement> options;
+    List<WebElement> optionsEmpStatus;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[4]/div/div[2]/div/div[2]")
+    List<WebElement> optionsInclude;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[6]/div/div[2]/div/div[2]")
+    List<WebElement> optionsJobTitle;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[7]/div/div[2]/div/div[2]")
+    List<WebElement> optionsSubUnit;
 
     @FindBy(css = ".oxd-table-card")
     List<WebElement> records;
@@ -40,7 +58,25 @@ public class PIMPage extends BasePage {
 
     public void searchByEmpStatus() {
         employment_status.click();
-        options.get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[3]/div/div[2]/div/div[2]/div[4]")).click();
+        optionsEmpStatus.get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[3]/div/div[2]/div/div[2]/div[4]")).click();
+        submit_search.click();
+    }
+
+    public void searchByInclude() {
+        include.click();
+        optionsInclude.get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[4]/div/div[2]/div/div[2]/div[2]")).click();
+        submit_search.click();
+    }
+
+    public void searchByJobTitle() {
+        jobTitle.click();
+        optionsJobTitle.get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[6]/div/div[2]/div/div[2]/div[2]")).click();
+        submit_search.click();
+    }
+
+    public void searchBySubUnit() {
+        subUnit.click();
+        optionsSubUnit.get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[7]/div/div[2]/div/div[2]/div[2]")).click();
         submit_search.click();
     }
 
@@ -50,7 +86,6 @@ public class PIMPage extends BasePage {
     }
 
     public boolean getRecord(String id){
-        System.out.println(getRecords().get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[2]/div")).getText());
         return getRecords().get(0).findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[2]/div")).getText().equals(id);
     }
 
@@ -58,16 +93,3 @@ public class PIMPage extends BasePage {
         return getRecords().size()>0;
     }
 }
-
-/*
-
-<div role="listbox" class="oxd-select-dropdown --positon-bottom" loading="false" data-v-768a7d72="" data-v-15ec1d6f="">
-<div role="option" class="oxd-select-option" data-v-a96a71ca="" data-v-15ec1d6f="">-- Select --</div>
-<div role="option" class="oxd-select-option" data-v-a96a71ca="" data-v-15ec1d6f="">
-    <span data-v-15ec1d6f="">Freelance</span></div>
-<div role="option" class="oxd-select-option" data-v-a96a71ca="" data-v-15ec1d6f="">
-    <span data-v-15ec1d6f="">Full-Time Contract</span></div>
-<div role="option" class="oxd-select-option" data-v-a96a71ca="" data-v-15ec1d6f="">
-    <span data-v-15ec1d6f="">Full-Time Permanent</span></div>
-<div role="option" class="oxd-select-option" data-v-a96a71ca="" data-v-15ec1d6f=""><span data-v-15ec1d6f="">Full-Time Probation</span></div><div role="option" class="oxd-select-option" data-v-a96a71ca="" data-v-15ec1d6f=""><span data-v-15ec1d6f="">Part-Time Contract</span></div><div role="option" class="oxd-select-option" data-v-a96a71ca="" data-v-15ec1d6f=""><span data-v-15ec1d6f="">Part-Time Internship</span></div></div>
-*/

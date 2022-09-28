@@ -15,9 +15,7 @@ public class PIMPage extends BaseTest {
     public LoginApp login;
     public String id_employee = "0024";
 
-
-    @Given("Client see the records of employees, He want filter these records by Id")
-    public void client_see_the_records_of_employees_he_want_filter_these_records_by_id() {
+    private void login(){
         Director director = new Director();
         UserBuilder builder = new UserBuilder();
         director.constructUser(builder);
@@ -26,34 +24,80 @@ public class PIMPage extends BaseTest {
         page = login.login(user.getUsername(), user.getPassword());
     }
 
+
+    @Given("Client see the records of employees, He want filter these records by Id")
+    public void clientSeeTheRecordsOfEmployeesHeWantFilterTheseRecordsById() {
+        login();
+    }
+
     @When("He search an Id")
-    public void he_search_an_id() {
+    public void heSearchAnId() {
         page.search(id_employee);
     }
 
     @Then("data has been filtered with this Id")
-    public void data_has_been_filtered_with_this_id() {
+    public void dataHasBeenFilteredWithThisId() {
         Assert.assertTrue(page.getRecord(id_employee));
     }
 
     @Given("Client see the records of employees, He want filter these records by Employment Status")
-    public void client_see_the_records_of_employees_he_want_filter_these_records_by_employment_status() {
-        Director director = new Director();
-        UserBuilder builder = new UserBuilder();
-        director.constructUser(builder);
-        User user = builder.getResult();
-        login = new LoginApp(driver);
-        page = login.login(user.getUsername(), user.getPassword());
+    public void clientSeeTheRecordsOfEmployeesHeWantFilterTheseRecordsByEmploymentStatus() {
+        login();
     }
 
     @When("He search an employee using an Employment Status")
-    public void he_search_an_employee_using_an_employment_status() {
+    public void heSearchAnEmployeeUsingAnEmploymentStatus() {
         page.searchByEmpStatus();
     }
 
     @Then("data has been filtered with this Employment Status")
-    public void data_has_been_filtered_with_employment_status() {
+    public void dataHasBeenFilteredWithEmploymentStatus() {
         Assert.assertTrue(page.getRecordByFilter2());
     }
 
+    @Given("Client see the records of employees, He want filter these records by Include")
+    public void clientSeeTheRecordsOfEmployeesHeWantFilterTheseRecordsByInclude() {
+        login();
+    }
+
+    @When("He search an employee using an Include")
+    public void heSearchAnEmployeeUsingAnInclude() {
+        page.searchByInclude();
+    }
+
+    @Then("data has been filtered with this Include")
+    public void dataHasBeenFilteredWithThisInclude()  {
+        Assert.assertTrue(page.getRecordByFilter2());
+    }
+
+    @Given("Client see the records of employees, He want filter these records by Job Title")
+    public void clientSeeTheRecordsOfEmployeesHeWantFilterTheseRecordsByJobTitle() {
+        login();
+    }
+
+    @When("He search an employee using an Job Title")
+    public void heSearchAnEmployeeUsingAnJobTitle() {
+        page.searchByJobTitle();
+    }
+
+    @Then("data has been filtered with this Job Title")
+    public void dataHasBeenFilteredWithThisJobTitle() {
+        Assert.assertTrue(page.getRecordByFilter2());
+    }
+
+    @Given("Client see the records of employees, He want filter these records by Sub Unit")
+    public void clientSeeTheRecordsOfEmployeesHeWantFilterTheseRecordsBySubUnit() {
+        login();
+    }
+
+    @When("He search an employee using an Sub Unit")
+    public void heSearchAnEmployeeUsingAnSubUnit() {
+        page.searchBySubUnit();
+    }
+
+    @Then("data has been filtered with this Sub Unit")
+    public void dataHasBeenFilteredWithThisSubUnit() {
+        Assert.assertTrue(page.getRecordByFilter2());
+    }
 }
+
