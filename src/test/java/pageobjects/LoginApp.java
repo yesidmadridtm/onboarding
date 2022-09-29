@@ -21,11 +21,19 @@ public class LoginApp extends BasePage {
     @FindBy(className = "oxd-button")
     WebElement submit;
 
-    public PIMPage login(String email, String password){
+    public PIMPage loginPMI(String email, String password){
         email_app.sendKeys(email);
         password_app.sendKeys(password);
         submit.click();
         PIMPage page = new PIMPage(driver);
+        return page;
+    }
+
+    public SideBarPage loginSideBar(String email, String password){
+        email_app.sendKeys(email);
+        password_app.sendKeys(password);
+        submit.click();
+        SideBarPage page = new SideBarPage(driver);
         return page;
     }
 }

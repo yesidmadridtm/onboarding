@@ -4,16 +4,19 @@ import base.BaseTest;
 import data.Director;
 import data.User;
 import data.UserBuilder;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pageobjects.LoginApp;
 
-public class PIMPage extends BaseTest {
+public class PIMSteps extends BaseTest {
     public pageobjects.PIMPage page;
     public LoginApp login;
-    public String id_employee = "0024";
+    public String idEmployee = "0024";
+
+    public String idNewEmployee = "1111";
 
     private void login(){
         Director director = new Director();
@@ -21,7 +24,7 @@ public class PIMPage extends BaseTest {
         director.constructUser(builder);
         User user = builder.getResult();
         login = new LoginApp(driver);
-        page = login.login(user.getUsername(), user.getPassword());
+        page = login.loginPMI(user.getUsername(), user.getPassword());
     }
 
 
@@ -32,12 +35,12 @@ public class PIMPage extends BaseTest {
 
     @When("He search an Id")
     public void heSearchAnId() {
-        page.search(id_employee);
+        page.search(idEmployee);
     }
 
     @Then("data has been filtered with this Id")
     public void dataHasBeenFilteredWithThisId() {
-        Assert.assertTrue(page.getRecord(id_employee));
+        Assert.assertTrue(page.getRecord(idEmployee));
     }
 
     @Given("Client see the records of employees, He want filter these records by Employment Status")
@@ -99,5 +102,72 @@ public class PIMPage extends BaseTest {
     public void dataHasBeenFilteredWithThisSubUnit() {
         Assert.assertTrue(page.getRecordByFilter2());
     }
+
+    @Given("Client want to add an new employee in the application")
+    public void clientWantAddAnNewEmployeeInTheApplication() {
+        login();
+    }
+
+    @When("He go to registration form")
+    public void heGoToRegistrationForm() {
+        page.goToAdd();
+    }
+
+    @And("He provides information about new employee")
+    public void heProvidesInformationAboutNewEmployee() {
+        page.addValuesAdd(idNewEmployee, "pepito", "perez");
+    }
+
+    @Then("the information is registered")
+    public void theInformationIsRegistered() {
+        Assert.assertTrue(page.message());
+    }
+
+
+    @Given("Client want to edit name of an employee in the application")
+    public void clientWantToEditNameOfAnEmployeeInTheApplication() {
+        login();
+    }
+
+    @When("He search an employee using his Id")
+    public void heSearchAnEmployeeUsingHisId() {
+        page.search(idNewEmployee);
+    }
+
+    @And("He go to form of update")
+    public void heGoToFormOfUpdate() throws InterruptedException {
+        page.goToUpdate();
+    }
+
+    @And("He provides new name of employee")
+    public void heProvidesNewNameOfEmployee() throws InterruptedException {
+        page.editName("juan");
+    }
+
+    @Then("the name is updated")
+    public void theNameIsUpdated() throws InterruptedException {
+        Assert.assertTrue(page.getMessage(idNewEmployee, "juan"));
+    }
+
+    @Given("Client want to delete an employee in the application")
+    public void clientWantToDeleteAnEmployeeInTheApplication() {
+        login();
+    }
+
+    @When("He search an employee in list using his Id")
+    public void heSearchAnEmployeeInListUsingHisId() {
+        page.search(idNewEmployee);
+    }
+
+    @And("He go to action of delete")
+    public void heGoToActionOfDelete() throws InterruptedException {
+        page.deleteEmployee();
+    }
+
+    @Then("the employee has been deleted")
+    public void theEmployeeHasBeenDeleted() throws InterruptedException {
+        Assert.assertTrue(page.checkDelete());
+    }
+
 }
 
