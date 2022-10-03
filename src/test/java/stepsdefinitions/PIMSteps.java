@@ -1,7 +1,6 @@
 package stepsdefinitions;
 
 import base.BaseTest;
-import data.Director;
 import data.User;
 import data.UserBuilder;
 import io.cucumber.java.en.And;
@@ -19,10 +18,7 @@ public class PIMSteps extends BaseTest {
     public String idNewEmployee = "1111";
 
     private void login(){
-        Director director = new Director();
-        UserBuilder builder = new UserBuilder();
-        director.constructUser(builder);
-        User user = builder.getResult();
+        User user = UserBuilder.getUser();
         login = new LoginApp(driver);
         page = login.loginPMI(user.getUsername(), user.getPassword());
     }
@@ -34,7 +30,7 @@ public class PIMSteps extends BaseTest {
     }
 
     @When("He search an Id")
-    public void heSearchAnId() {
+    public void heSearchAnId() throws InterruptedException {
         page.search(idEmployee);
     }
 
@@ -54,7 +50,7 @@ public class PIMSteps extends BaseTest {
     }
 
     @Then("data has been filtered with this Employment Status")
-    public void dataHasBeenFilteredWithEmploymentStatus() {
+    public void dataHasBeenFilteredWithEmploymentStatus() throws InterruptedException {
         Assert.assertTrue(page.getRecordByFilter2());
     }
 
@@ -69,7 +65,7 @@ public class PIMSteps extends BaseTest {
     }
 
     @Then("data has been filtered with this Include")
-    public void dataHasBeenFilteredWithThisInclude()  {
+    public void dataHasBeenFilteredWithThisInclude() throws InterruptedException {
         Assert.assertTrue(page.getRecordByFilter2());
     }
 
@@ -84,7 +80,7 @@ public class PIMSteps extends BaseTest {
     }
 
     @Then("data has been filtered with this Job Title")
-    public void dataHasBeenFilteredWithThisJobTitle() {
+    public void dataHasBeenFilteredWithThisJobTitle() throws InterruptedException {
         Assert.assertTrue(page.getRecordByFilter2());
     }
 
@@ -99,7 +95,7 @@ public class PIMSteps extends BaseTest {
     }
 
     @Then("data has been filtered with this Sub Unit")
-    public void dataHasBeenFilteredWithThisSubUnit() {
+    public void dataHasBeenFilteredWithThisSubUnit() throws InterruptedException {
         Assert.assertTrue(page.getRecordByFilter2());
     }
 
@@ -114,7 +110,7 @@ public class PIMSteps extends BaseTest {
     }
 
     @And("He provides information about new employee")
-    public void heProvidesInformationAboutNewEmployee() {
+    public void heProvidesInformationAboutNewEmployee() throws InterruptedException {
         page.addValuesAdd(idNewEmployee, "pepito", "perez");
     }
 
@@ -135,7 +131,7 @@ public class PIMSteps extends BaseTest {
     }
 
     @And("He go to form of update")
-    public void heGoToFormOfUpdate() throws InterruptedException {
+    public void heGoToFormOfUpdate() {
         page.goToUpdate();
     }
 
@@ -160,12 +156,12 @@ public class PIMSteps extends BaseTest {
     }
 
     @And("He go to action of delete")
-    public void heGoToActionOfDelete() throws InterruptedException {
+    public void heGoToActionOfDelete() {
         page.deleteEmployee();
     }
 
     @Then("the employee has been deleted")
-    public void theEmployeeHasBeenDeleted() throws InterruptedException {
+    public void theEmployeeHasBeenDeleted() {
         Assert.assertTrue(page.checkDelete());
     }
 

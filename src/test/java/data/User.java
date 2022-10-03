@@ -1,8 +1,7 @@
 package data;
 
 public class User {
-    private final String username;
-    private final String password;
+    private final String username, password;
 
     public User(String username, String password) {
         this.username = username;

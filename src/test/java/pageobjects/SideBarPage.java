@@ -13,17 +13,17 @@ public class SideBarPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[1]/aside/nav/div[2]/div/div/input")
+    @FindBy(xpath = "//input[@placeholder='Search']")
     WebElement inputSearch;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[1]/aside/nav/div[2]/ul/li/a/span")
     WebElement resultSearch;
 
-    public void search(String menu){
+    public void search(String menu) {
         inputSearch.sendKeys(menu);
     }
 
-    public boolean checkResult(String menu){
+    public boolean checkResult(String menu) {
         return resultSearch.getText().equals(menu);
     }
 

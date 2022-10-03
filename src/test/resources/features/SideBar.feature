@@ -1,5 +1,5 @@
 Feature: Manage filtering of side bar
-
+    @run
     Scenario: Filer side bar menu
       Given Client want to filter side bar menu using a name
       When He provides name

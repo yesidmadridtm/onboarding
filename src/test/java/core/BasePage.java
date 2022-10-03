@@ -1,27 +1,23 @@
 package core;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 
 public class BasePage {
 
     protected WebDriver driver;
+    public Wait<WebDriver> wait;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
+        this.wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
         PageFactory.initElements(driver, this);
-    }
-
-    public void waitForElement(By findBy) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
-    }
-
-    public void close(){
-        driver.close();
     }
 }

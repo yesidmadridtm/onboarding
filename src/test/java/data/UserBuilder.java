@@ -1,20 +1,29 @@
 package data;
 
-public class UserBuilder implements Builder{
+public class UserBuilder {
     private String username;
     private String password;
 
-    @Override
-    public void setUsername(String username) {
+    public UserBuilder(){
+        username = "";
+        password = "";
+    }
+
+    public UserBuilder setUsername(String username) {
         this.username = username;
+        return this;
     }
 
-    @Override
-    public void setPassword(String password) {
+    public UserBuilder setPassword(String password) {
         this.password = password;
+        return this;
     }
 
-    public User getResult() {
+    public static User getUser() {
+        return new UserBuilder().setUsername("Admin").setPassword("admin123").build();
+    }
+
+    public User build(){
         return new User(username, password);
     }
 }
