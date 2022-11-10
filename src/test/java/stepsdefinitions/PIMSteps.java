@@ -1,6 +1,5 @@
 package stepsdefinitions;
 
-import base.BaseTest;
 import data.User;
 import data.UserBuilder;
 import io.cucumber.java.en.And;
@@ -18,7 +17,7 @@ public class PIMSteps extends BaseTest {
     public String idNewEmployee = "1111";
 
     private void login(){
-        User user = UserBuilder.getUser();
+        User user = UserBuilder.getAdminUser();
         login = new LoginApp(driver);
         page = login.loginPMI(user.getUsername(), user.getPassword());
     }

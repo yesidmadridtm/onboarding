@@ -1,6 +1,5 @@
 package pageobjects;
 
-import core.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,15 +24,13 @@ public class LoginApp extends BasePage {
         email_app.sendKeys(email);
         password_app.sendKeys(password);
         submit.click();
-        PIMPage page = new PIMPage(driver);
-        return page;
+        return new PIMPage(driver);
     }
 
     public SideBarPage loginSideBar(String email, String password){
         email_app.sendKeys(email);
         password_app.sendKeys(password);
         submit.click();
-        SideBarPage page = new SideBarPage(driver);
-        return page;
+        return new SideBarPage(driver);
     }
 }

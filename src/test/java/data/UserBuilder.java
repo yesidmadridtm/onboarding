@@ -19,7 +19,7 @@ public class UserBuilder {
         return this;
     }
 
-    public static User getUser() {
+    public static User getAdminUser() {
         return new UserBuilder().setUsername("Admin").setPassword("admin123").build();
     }
 
@@ -27,6 +27,3 @@ public class UserBuilder {
         return new User(username, password);
     }
 }
-
-//username = "Admin";
-  //      password = "admin123";

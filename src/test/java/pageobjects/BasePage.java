@@ -1,4 +1,4 @@
-package core;
+package pageobjects;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;

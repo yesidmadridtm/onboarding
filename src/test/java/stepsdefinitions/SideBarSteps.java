@@ -1,6 +1,5 @@
 package stepsdefinitions;
 
-import base.BaseTest;
 import data.User;
 import data.UserBuilder;
 import io.cucumber.java.en.Given;
@@ -14,7 +13,7 @@ public class SideBarSteps extends BaseTest {
     public String menu = "PIM";
 
     private void login(){
-        User user = UserBuilder.getUser();
+        User user = UserBuilder.getAdminUser();
         login = new LoginApp(driver);
         page = login.loginSideBar(user.getUsername(), user.getPassword());
     }

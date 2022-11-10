@@ -1,7 +1,5 @@
 package pageobjects;
 
-import core.BasePage;
-import io.cucumber.java.en.Then;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
